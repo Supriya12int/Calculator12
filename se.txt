@@ -161,3 +161,9 @@ dokcer login and dokcer ps -a
 and see in net commit of images
       
 
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+ git remote –v
+git remote set-url origin https://github.com/username/new-repository.git
+git checkout branch-name
+git checkout main  
