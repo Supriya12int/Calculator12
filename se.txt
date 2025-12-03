@@ -1,0 +1,163 @@
+MINIKUBE:
+minikube start
+kubectl create deployment mynginx --image=nginx
+kubectl get deployments
+kubectl expose deployment mynginx --type=NodePort --port=80 -- target-port=80
+kubectl get pods
+kubectl get svc
+minikube tunnel
+>minikube service mynginx --url
+kubectl delete deployment mynginx kubectl delete service mynginx
+minikube stop
+
+NAGIOS:
+
+docker pull jasonrivers/nagios:latest
+docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+localhost:8888
+nagiosadmin
+nagios
+
+AWS:
+ssh client
+sudo apt update
+sudo apt install git
+sudo apt install docker.io
+sudo apt install nano
+git clone https://github.com/haleema91/cs-e34.git
+ls
+cd cs-e34
+ls
+FROM tomcat:9-jdk11
+# Copy war file into Tomcat webapps folder
+COPY target/*.war /usr/local/tomcat/webapps/
+# Start Tomcat
+CMD ["catalina.sh", "run"]
+
+sudo docker build -t mweb(name) .
+sudo docker run -d -p 6060:8080 mweb
+sudo docker ps
+sudo docker stop id
+exit
+in network->id:6060\maven-web=java
+
+same for web project
+haleema91/webDeployment
+
+FROM nginx:latest
+COPY ./ usr/share/nginx/html/
+
+Jenkins:
+pipeline:jenkins-pipeline
+
+pipeline {
+    agent any
+
+    tools {
+        jdk 'jdk-17'
+        maven 'MAVEN'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Supriya12int/jenkins_script'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat "mvn clean package"
+            }
+        }
+    }
+
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+        }
+    }
+}
+
+for mavevn java-repo->maven-java
+for web in Jenkins
+follow mams and step wise
+web_buils-git repo  in triggers - select pollSCM WITH ***** and clean install and post - artifacts**/*,and web_test SELECT FRIST ONE
+WEB_TEST-GIT NONE AND IN environment select this delete workspace
+   -> in build steps copy artifacts->web_build->**/* 
+             ->maven targets-test
+      ->
+other projects deploy
+web_deploy->
+           copy artifacts to web_test
+           macen targets -clean install
+           post artifacts-
+                   ->**/*
+                   ->deploy war/ear to container -**/*.war--webpro2-tomcat--admin check in computer fro tomcat ---url 8080 
+sAVE AND APPLY
+AND RUN PIPELINE 
+
+docker-compose:
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"  # Access WordPress at http://localhost:8080
+    environment:
+      WORDPRESS_DB_HOST: db:3306  # Must match the db service name and port
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db  # Ensures db starts first
+    restart: always  # Optional: auto-restart container if it stops
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql  # Persist database data
+    restart: always
+
+# Define a volume for persistent database storage
+volumes:
+  db_data:
+
+docker-compose up -d
+docker-compose down
+
+docker CLI:
+docker version
+docker ps
+docker ps-a
+docker pull redis or hello world
+docker run --name my-redis -d redis
+docker images
+ACCESING REDIS:- docker exe -it my-redis redis-cli 
+     > SET name "kmit"
+     >get name
+     > exit
+docker stop my-redis
+docker start my-redis -for restarting
+removing-> docker rm my-redis
+          docker stop my-redis
+remove redis image -- docker rmi redis
+
+docker file creation in docker
+Dockerfile->dockerprojects/redis.dockerfile
+-> FROM redis:latest
+   CMD ["redis":"server"]
+save and commands on same path file
+  -> docker build -t redisnew .
+docker run --name my-redis ew -d redisnew
+docker images
+dokcer login and dokcer ps -a
+and see in net commit of images
+      
+
